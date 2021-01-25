@@ -8,6 +8,7 @@ namespace Three_Sisters_Hotel.Models
 {
     public class Booking
     {
+        [Key]
         public int ID { get; set; }
 
         public int RoomID { get; set; }
