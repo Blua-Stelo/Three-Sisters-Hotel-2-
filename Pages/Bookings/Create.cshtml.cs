@@ -22,7 +22,7 @@ namespace Three_Sisters_Hotel.Pages.Bookings
         public IActionResult OnGet()
         {
         ViewData["CustomerEmail"] = new SelectList(_context.Set<Customer>(), "Email", "Email");
-        ViewData["RoomID"] = new SelectList(_context.Set<Room>(), "ID", "Level");
+        ViewData["RoomID"] = new SelectList(_context.Set<Room>(), "ID", "ID");
             return Page();
         }
 
