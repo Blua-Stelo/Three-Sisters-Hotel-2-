@@ -1,0 +1,86 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+    <!--indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!--Wrapper for slides-->
+    <div class="carousel-inner">
+        @*https://pixabay.com/photos/bed-bedroom-carpet-curtains-1839183/  Bedroom*@
+        <div class="carousel-item active">
+            <img src="~/images/Bedroom.jpg" alt="Bedroom" />
+            <div class="carousel-caption">
+                <h4>Bedroom</h4>
+            </div>
+        </div>
+
+        @*https://pixabay.com/photos/dining-room-living-room-modern-3108037/  Dining Room*@
+        <div class="carousel-item">
+            <img src="~/images/Dining Room.jpg" alt="Dining Room" />
+            <div class="carousel-caption">
+                <h4>Dining Room</h4>
+            </div>
+        </div>
+
+        @*https://pixabay.com/photos/hotel-apartments-tourist-complex-1209021/  Hotel Building*@
+        <div class="carousel-item">
+            <img src="~/images/Hotel Building.jpg" alt="Hotel Building" />
+            <div class="carousel-caption">
+                <h4>Hotel Building</h4>
+            </div>
+        </div>
+
+        @*https://pixabay.com/photos/hotel-travel-palm-luxury-tourism-1831072/  Pool*@
+        <div class="carousel-item">
+            <img src="~/images/Pool.jpg" alt="Pool" />
+            <div class="carousel-caption">
+                <h4>Pool</h4>
+            </div>
+        </div>
+    </div>
+
+    <!--Left and right controls-->
+    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+<div class="row container-fluid">
+    <div class="col-sm-8">
+        <h4>Welcome to the Three Sisters Hotel!</h4>
+    </div>
+
+    <div class="col-sm-4">
+        <ul>
+            <li>
+                <a href="https://www.weatherzone.com.au/nsw/central-tablelands/katoomba">Katoomba Weather</a>
+            </li>
+
+            <li>
+                <a href="https://www.bmcc.nsw.gov.au/">Blue Mountains City Council</a>
+            </li>
+        </ul>
+    </div>
+</div>
