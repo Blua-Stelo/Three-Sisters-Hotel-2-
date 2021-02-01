@@ -24,7 +24,7 @@ namespace Three_Sisters_Hotel.Pages.Bookings
         public SearchRooms RoomsInput { get; set; }
 
         // List of different movies; for passing to Content file to display
-        public IList<Booking> DiffBooking { get; set; }
+        public IList<Room> DiffRooms { get; set; }
 
         public IActionResult OnGet()
         {
@@ -40,24 +40,30 @@ namespace Three_Sisters_Hotel.Pages.Bookings
         {
             // prepare the parameters to be inserted into the query
             var bedcount = new SqliteParameter("bedcounts", RoomsInput.Beds);
-            var bookingA = new SqliteParameter("bookingA", RoomsInput.Booking);
+            var Checkin = new SqliteParameter("Checkin", RoomsInput.Checkin);
+            var Checkout = new SqliteParameter("Checkout", RoomsInput.Checkout);
+            ViewData["bed"] = RoomsInput.Beds;
+            ViewData["in"] = RoomsInput.Checkin;
+            ViewData["out"] = RoomsInput.Checkout;
+
 
             // Construct the query to get the movies watched by Moviegoer A but not Moviegoer B
             // Use placeholders as the parameters
-            
-            
-            var diffBooking = _context.Booking.FromSqlRaw("select [Room].* from [Room] inner join [Booking] on "
-                             + "[Room].ID = [Booking].RoomID where [Room].BedCount = @bedcount and "
-                             +""
-                             + "[Room].ID not in (select [Room].ID from [Room] inner join [Booking] on "
-                             + "[Room].ID = [Booking].RoomID where [Booking].MovieGoerEmail = @personB)",bedcount, bookingA);
 
-            bookingA.Checkin < bookingB.Checkout AND bookingB.Checkin < bookingA.Checkout
+            
+            var diffRooms = _context.Room.FromSqlRaw("select * from [Room] inner join [Booking] on "
+                             + "[Room].ID = [Booking].RoomID where [Room].BedCount = @bedcounts and "
+                             + "[Room].ID not in (select [Room].ID from [Room] inner join [Booking] on "
+                             + "[Room].ID = [Booking].RoomID where [Booking].ChecnIn < @Checkin and [Booking].CheckOut <  @Checkout)", bedcount, Checkin, Checkout);
+            
+            //var diffRooms = _context.Room.FromSqlRaw("select * from Room inner join Booking on Room.ID = Booking.RoomID where Room.BedCount = @bedcounts and Room.ID not in (select Room.ID from Room inner join Booking on Room.ID = Booking.RoomID where Booking.ChecnIn < @Checkin and Booking.CheckOut < @Checkout)", bedcount, Checkin, Checkout);
+            //bookingA.Checkin < bookingB.Checkout AND bookingB.Checkin < bookingA.Checkout
 
             //.Select(mo => new Movie { ID = mo.ID, Genre = mo.Genre, Price = mo.Price, ReleaseDate = mo.ReleaseDate, Title = mo.Title });
 
             // Run the query and save the results in DiffMovies for passing to content file
-            //DiffBooking = await diffBooking.ToListAsync();
+            DiffRooms = await diffRooms.ToListAsync();
+
             return Page();
         }
     }

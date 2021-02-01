@@ -11,6 +11,9 @@ namespace Three_Sisters_Hotel.Models
        [Required]
        public int Beds { get; set; }
        [Required]
-       public Booking Booking { get; set; }
+       public DateTime Checkin { get; set; }
+
+       [Required]
+       public DateTime Checkout { get; set; }
     }
 }
