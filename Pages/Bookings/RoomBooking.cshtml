@@ -1,0 +1,45 @@
+﻿@page
+@model Three_Sisters_Hotel.Pages.Bookings.RoomBookingModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "RoomBooking";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Booking a room</h2>
+
+
+<h4>Welcome, @UserManager.GetUserName(User)!  </h4>
+
+
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Myself.RoomID" class="control-label"></label>
+                <input asp-for="Myself.RoomID" class="form-control" />
+                <span asp-validation-for="Myself.RoomID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.ChecnIn" class="control-label"></label>
+                <input asp-for="Myself.ChecnIn" class="form-control" />
+                <span asp-validation-for="Myself.ChecnIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.CheckOut" class="control-label"></label>
+                <input asp-for="Myself.CheckOut" class="form-control" />
+                <span asp-validation-for="Myself.CheckOut" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
