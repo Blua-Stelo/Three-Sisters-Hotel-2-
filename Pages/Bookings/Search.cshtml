@@ -1,0 +1,91 @@
+﻿@page
+@model Three_Sisters_Hotel.Pages.Bookings.SearchModel
+@{
+    ViewData["Title"] = "Search Rooms";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        @* by default, a method="post" form will be rendered. *@
+        <form asp-action="Search">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomsInput.Beds" class="control-label">Number of Beds</label>
+                <select asp-for="RoomsInput.Beds" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomsInput.Booking.ChecnIn" class="control-label">Check In Date</label>
+                <input type="date" asp-for="RoomsInput.Booking.ChecnIn" class="form-control">
+                <span asp-validation-for="RoomsInput.Booking.ChecnIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomsInput.Booking.CheckOut" class="control-label">Check Out Date</label>
+                <input type="date" asp-for="RoomsInput.Booking.CheckOut" class="form-control">
+                <span asp-validation-for="RoomsInput.Booking.CheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Compare" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<p>@ViewData["Booking"]</p>
+@* Check this page is requested by 'get' or 'post' method.
+            If 'post', then display the comparison results.
+        @if (Model.DiffMovies != null)
+        {
+            <div>
+                <hr />
+                @if (Model.DiffMovies.Count == 0)
+                {
+                    <h4>
+                        There is no movie watched by MovieGoer A, but not by MovieGoerB.
+                    </h4>
+                }
+                else
+                {
+                    <table class="table">
+                        <!-- .table is a Bootstrap class giving table styles -->
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiffMovies[0].Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiffMovies[0].Genre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiffMovies[0].Price)
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model.DiffMovies)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+            </div>
+
+    }
+*@
+@* Inlcude JavaScript for client-side vaildations.*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -8,11 +8,9 @@ namespace Three_Sisters_Hotel.Models
 {
     public class SearchRooms
     {
-        [Required]
-        public int Beds { get; set; }
-        [Required]
-        public DateTime Checkin { get; set; }
-        [Required]
-        public DateTime Checkout { get; set; }
+       [Required]
+       public int Beds { get; set; }
+       [Required]
+       public Booking Booking { get; set; }
     }
 }
