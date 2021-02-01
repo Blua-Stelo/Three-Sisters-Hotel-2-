@@ -62,7 +62,7 @@ namespace Three_Sisters_Hotel.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = "/Customers/MyDetails")
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -92,7 +92,6 @@ namespace Three_Sisters_Hotel.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _userManager.AddToRoleAsync(user, "Customers");
-
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

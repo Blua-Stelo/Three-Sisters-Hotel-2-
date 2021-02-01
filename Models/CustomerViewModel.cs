@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Three_Sisters_Hotel.Models
 {
-    public class Customer
+    public class CustomerViewModel
     {
-        [Key, Required]
-        [DataType(DataType.EmailAddress)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Email { get; set; }
-
         [Required]
         [Display(Name = "First Name")]
         [RegularExpression(@"[A-Z][a-z'-]{1,19}")]
@@ -23,7 +18,7 @@ namespace Three_Sisters_Hotel.Models
         [RegularExpression(@"[A-Z][a-z'-]{1,19}")]
         public string LastName { get; set; }
 
-        [NotMapped]
+        [NotMapped] // not mapping this property to database, but exist in memory
         public string FullName => $"{FirstName} {LastName}";
 
         [Required, Display(Name = "Post Code")]
@@ -31,7 +26,5 @@ namespace Three_Sisters_Hotel.Models
         public string Postcode { get; set; }
 
         public ICollection<Booking> TheBookings { get; set; }
-
-        
     }
 }
