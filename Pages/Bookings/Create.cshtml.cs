@@ -61,7 +61,7 @@ namespace Three_Sisters_Hotel.Pages.Bookings
             _context.Booking.Add(bookings);
             await _context.SaveChangesAsync();
 
-            ViewData["pizza"] = theRoom.ID;
+            ViewData["Room"] = theRoom.ID;
             ViewData["total"] = bookings.Cost;
             ViewData["SuccessDB"] = "success";
             
