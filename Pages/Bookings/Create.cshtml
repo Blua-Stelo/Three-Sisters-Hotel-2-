@@ -15,28 +15,32 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Booking.RoomID" class="control-label"></label>
-                <select asp-for="Booking.RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
+                <label asp-for="Bookings.RoomID" class="control-label"></label>
+                <select asp-for="Bookings.RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
+            </div>
+            @*
+        <div class="form-group">
+            <label asp-for="Bookings.CustomerEmail" class="control-label"></label>
+            <select asp-for="Bookings.CustomerEmail" class="form-control" asp-items="ViewBag.CustomerEmail"></select>
+        </div>
+            *@
+            <div class="form-group">
+                <label asp-for="Bookings.ChecnIn" class="control-label"></label>
+                <input asp-for="Bookings.ChecnIn" class="form-control" />
+                <span asp-validation-for="Bookings.ChecnIn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Booking.CustomerEmail" class="control-label"></label>
-                <select asp-for="Booking.CustomerEmail" class ="form-control" asp-items="ViewBag.CustomerEmail"></select>
+                <label asp-for="Bookings.CheckOut" class="control-label"></label>
+                <input asp-for="Bookings.CheckOut" class="form-control" />
+                <span asp-validation-for="Bookings.CheckOut" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Booking.ChecnIn" class="control-label"></label>
-                <input asp-for="Booking.ChecnIn" class="form-control" />
-                <span asp-validation-for="Booking.ChecnIn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Booking.CheckOut" class="control-label"></label>
-                <input asp-for="Booking.CheckOut" class="form-control" />
-                <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Booking.Cost" class="control-label"></label>
-                <input asp-for="Booking.Cost" class="form-control" />
-                <span asp-validation-for="Booking.Cost" class="text-danger"></span>
-            </div>
+            @*
+        <div class="form-group">
+            <label asp-for="Bookings.Cost" class="control-label"></label>
+            <input asp-for="Bookings.Cost" class="form-control" />
+            <span asp-validation-for="Bookings.Cost" class="text-danger"></span>
+        </div>.
+            *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
