@@ -48,20 +48,28 @@
     </div>
 </div>
 
+<p> @ViewData["rooms"]</p>
+
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
 
-@if (ViewData["SuccessDB"] != null)
+@if ((string)ViewData["SuccessDB"] == "success")
 {
-<h5>
-    the room booked, the level, the Checking in and Checking out dates, and the cost of this booking
-    You have booked Room No.<b>@ViewData["Room"]</b> Check in at <b>@Model.Bookings.ChecnIn</b> Check out at <b>@Model.Bookings.CheckOut</b>
-</h5>
+    <h5>
+        the room booked, the level, the Checking in and Checking out dates, and the cost of this booking
+        You have booked Room No.<b>@ViewData["Room"]</b> Check in at <b>@Model.Bookings.ChecnIn</b> Check out at <b>@Model.Bookings.CheckOut</b>
+    </h5>
 
     <h5>The Total Price is <b>$@ViewData["total"]</b>.</h5>
 
     <hr />
+}
+else if ((string)ViewData["SuccessDB"] == "fail")
+{
+    <h5>
+        This room is not aviliable at the Date.
+    </h5>
 }
 
 @section Scripts {

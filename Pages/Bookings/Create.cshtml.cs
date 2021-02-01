@@ -10,11 +10,14 @@ using Three_Sisters_Hotel.Data;
 using Three_Sisters_Hotel.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Data.Sqlite;
 
 namespace Three_Sisters_Hotel.Pages.Bookings
 {
+    [Authorize(Roles = "Customers")]
     public class CreateModel : PageModel
     {
+
         private readonly Three_Sisters_Hotel.Data.ApplicationDbContext _context;
 
         public CreateModel(Three_Sisters_Hotel.Data.ApplicationDbContext context)
@@ -40,6 +43,8 @@ namespace Three_Sisters_Hotel.Pages.Bookings
 
             Booking bookings = await _context.Booking.FirstOrDefaultAsync(m => m.CustomerEmail == _email);
 
+            
+
             if (!ModelState.IsValid)
             {
                 ViewData["CustomerEmail"] = new SelectList(_context.Set<Customer>(), "Email", "Email");
@@ -58,13 +63,36 @@ namespace Three_Sisters_Hotel.Pages.Bookings
             // calculate the total price of this order
             bookings.Cost = (int)totalday * theRoom.Price;
 
+            var Roomid = new SqliteParameter("Roomid", Bookings.RoomID);
+            var Checkin = new SqliteParameter("Checkin", Bookings.ChecnIn);
+            var Checkout = new SqliteParameter("Checkout", Bookings.CheckOut);
+
+            var diffRooms = _context.Room.FromSqlRaw("select [Room].* from [Room] inner join [Booking] on "
+                             + "[Booking].RoomID = @Roomid where [Booking].ChecnIn < @Checkin and [Booking].CheckOut <  @Checkout ", Roomid, Checkin, Checkout);
+            ViewData["rooms"] = diffRooms;
+
             _context.Booking.Add(bookings);
             await _context.SaveChangesAsync();
 
             ViewData["Room"] = theRoom.ID;
             ViewData["total"] = bookings.Cost;
             ViewData["SuccessDB"] = "success";
-            
+            /*
+            if (diffRooms == null)
+            {
+                _context.Booking.Add(bookings);
+                await _context.SaveChangesAsync();
+
+                ViewData["Room"] = theRoom.ID;
+                ViewData["total"] = bookings.Cost;
+                ViewData["SuccessDB"] = "success";
+            }
+            else
+            {
+                ViewData["SuccessDB"] = "fail";
+                return Page();
+            }
+            */
 
             return Page();
         }

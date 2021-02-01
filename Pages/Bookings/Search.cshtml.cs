@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using Three_Sisters_Hotel.Models;
 
 namespace Three_Sisters_Hotel.Pages.Bookings
 {
+    [Authorize(Roles = "Customers")]
     public class SearchModel : PageModel
     {
         private readonly Three_Sisters_Hotel.Data.ApplicationDbContext _context;
@@ -42,9 +44,9 @@ namespace Three_Sisters_Hotel.Pages.Bookings
             var bedcount = new SqliteParameter("bedcounts", RoomsInput.Beds);
             var Checkin = new SqliteParameter("Checkin", RoomsInput.Checkin);
             var Checkout = new SqliteParameter("Checkout", RoomsInput.Checkout);
-            ViewData["bed"] = RoomsInput.Beds;
-            ViewData["in"] = RoomsInput.Checkin;
-            ViewData["out"] = RoomsInput.Checkout;
+            //ViewData["bed"] = RoomsInput.Beds;
+            //ViewData["in"] = RoomsInput.Checkin;
+            //ViewData["out"] = RoomsInput.Checkout;
 
 
             // Construct the query to get the movies watched by Moviegoer A but not Moviegoer B
