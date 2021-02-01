@@ -35,15 +35,14 @@
         </form>
     </div>
 </div>
+@*
+    <p>
 
-<p>
-    
-    @ViewData["bed"] 
-    @ViewData["in"] 
-    @ViewData["out"]
-</p>
-
-<p>@ViewData["Booking"]</p>
+        @ViewData["bed"]
+        @ViewData["in"]
+        @ViewData["out"]
+    </p>
+*@
 @* Check this page is requested by 'get' or 'post' method.
     If 'post', then display the comparison results.
 *@
@@ -51,43 +50,41 @@
 {
     <div>
         <hr />
-       
-            <table class="table">
-                <!-- .table is a Bootstrap class giving table styles -->
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DiffRooms[0].ID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DiffRooms[0].Level)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DiffRooms[0].BedCount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DiffRooms[0].Price)
-                    </th>
-                </tr>
+        <table class="table">
+            <!-- .table is a Bootstrap class giving table styles -->
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiffRooms[0].ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiffRooms[0].Level)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiffRooms[0].BedCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiffRooms[0].Price)
+                </th>
+            </tr>
 
-                @foreach (var item in Model.DiffRooms)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Level)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BedCount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                    </tr>
-                }
-            </table>
-        
+            @foreach (var item in Model.DiffRooms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BedCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 
 }

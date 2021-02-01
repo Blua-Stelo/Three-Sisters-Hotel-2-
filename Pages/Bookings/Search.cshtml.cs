@@ -51,12 +51,14 @@ namespace Three_Sisters_Hotel.Pages.Bookings
             // Use placeholders as the parameters
 
             
-            var diffRooms = _context.Room.FromSqlRaw("select * from [Room] inner join [Booking] on "
+            var diffRooms = _context.Room.FromSqlRaw("select [Room].* from [Room] inner join [Booking] on "
                              + "[Room].ID = [Booking].RoomID where [Room].BedCount = @bedcounts and "
                              + "[Room].ID not in (select [Room].ID from [Room] inner join [Booking] on "
                              + "[Room].ID = [Booking].RoomID where [Booking].ChecnIn < @Checkin and [Booking].CheckOut <  @Checkout)", bedcount, Checkin, Checkout);
-            
+
             //var diffRooms = _context.Room.FromSqlRaw("select * from Room inner join Booking on Room.ID = Booking.RoomID where Room.BedCount = @bedcounts and Room.ID not in (select Room.ID from Room inner join Booking on Room.ID = Booking.RoomID where Booking.ChecnIn < @Checkin and Booking.CheckOut < @Checkout)", bedcount, Checkin, Checkout);
+           // select* from Room inner join Booking on Room.ID = Booking.RoomID where Room.BedCount = 1
+           //and Room.ID not in (select Room.ID from Room inner join Booking on Room.ID = Booking.RoomID where Booking.ChecnIn < 2021 - 02 - 01 and Booking.CheckOut < 2021 - 02 - 02)
             //bookingA.Checkin < bookingB.Checkout AND bookingB.Checkin < bookingA.Checkout
 
             //.Select(mo => new Movie { ID = mo.ID, Genre = mo.Genre, Price = mo.Price, ReleaseDate = mo.ReleaseDate, Title = mo.Title });
